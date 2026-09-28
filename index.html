@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hospitales Puerta de Hierro</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #23313d;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid #e6edf2;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1200px;
+      height: 82px;
+      margin: auto;
+      padding: 0 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #063b63;
+    }
+
+    .logo-symbol {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 3px solid #0a6ca8;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: bold;
+      font-size: 14px;
+      color: #0a6ca8;
+    }
+
+    .logo-text {
+      line-height: 1.15;
+    }
+
+    .logo-text strong {
+      display: block;
+      font-size: 18px;
+      letter-spacing: 0.3px;
+    }
+
+    .logo-text span {
+      font-size: 11px;
+      color: #6e7c87;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #394955;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #0872ae;
+    }
+
+    .appointment-btn {
+      padding: 11px 20px;
+      border-radius: 6px;
+      background: #086da5;
+      color: white !important;
+      font-weight: 600;
+    }
+
+    .appointment-btn:hover {
+      background: #055b8c;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 620px;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(3, 43, 70, 0.93) 0%,
+          rgba(5, 68, 105, 0.84) 43%,
+          rgba(5, 68, 105, 0.30) 100%
+        ),
+        url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1800&q=85");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 24px;
+      color: white;
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      margin-bottom: 18px;
+
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      color: #a9dcf6;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 5vw, 66px);
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 strong {
+      font-weight: 700;
+    }
+
+    .hero p {
+      max-width: 580px;
+      font-size: 18px;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #075c8c;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.55);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* =========================
+       QUICK SERVICES
+    ========================= */
+
+    .quick-wrapper {
+      position: relative;
+      margin-top: -58px;
+      z-index: 10;
+    }
+
+    .quick-services {
+      max-width: 1100px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      background: white;
+      border-radius: 12px;
+
+      box-shadow: 0 14px 40px rgba(25, 60, 85, 0.13);
+      overflow: hidden;
+    }
+
+    .quick-card {
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid #edf1f4;
+      transition: 0.25s ease;
+    }
+
+    .quick-card:last-child {
+      border-right: none;
+    }
+
+    .quick-card:hover {
+      background: #f5fafc;
+    }
+
+    .quick-icon {
+      font-size: 26px;
+      margin-bottom: 9px;
+    }
+
+    .quick-card strong {
+      display: block;
+      color: #064f7c;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .quick-card span {
+      color: #7b8891;
+      font-size: 12px;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 100px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: #0873ad;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      color: #18394e;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .section-description {
+      color: #6e7b84;
+      max-width: 680px;
+      font-size: 16px;
+    }
+
+    /* =========================
+       SPECIALTIES
+    ========================= */
+
+    .specialties {
+      background: #f7fafc;
+    }
+
+    .specialty-grid {
+      margin-top: 45px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .specialty-card {
+      background: white;
+      padding: 30px;
+      border: 1px solid #e7edf1;
+      border-radius: 10px;
+      transition: 0.25s ease;
+    }
+
+    .specialty-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(20, 55, 80, 0.09);
+      border-color: #c9e1ef;
+    }
+
+    .specialty-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+
+      border-radius: 10px;
+      background: #eaf5fb;
+      color: #0873ad;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 21px;
+    }
+
+    .specialty-card h3 {
+      color: #17425d;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .specialty-card p {
+      color: #7a8790;
+      font-size: 13px;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-image {
+      height: 480px;
+
+      background:
+        url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=85");
+
+      background-size: cover;
+      background-position: center;
+
+      border-radius: 12px;
+    }
+
+    .about-content p {
+      color: #6f7e88;
+      margin-bottom: 26px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+
+      padding-top: 25px;
+      border-top: 1px solid #e7edf0;
+    }
+
+    .stat strong {
+      display: block;
+      color: #0873ad;
+      font-size: 30px;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: #7c8991;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 80px 24px;
+
+      background:
+        linear-gradient(135deg, #053a5d, #0874ad);
+
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 28px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #062f4b;
+      color: white;
+      padding: 60px 24px 25px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    footer h4 {
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    footer p,
+    footer a {
+      color: #a9bdca;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    footer a {
+      display: block;
+      margin-bottom: 9px;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-brand {
+      max-width: 280px;
+    }
+
+    .footer-brand h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 45px auto 0;
+      padding-top: 22px;
+
+      border-top: 1px solid rgba(255,255,255,0.1);
+
+      color: #7895a6;
+      font-size: 11px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        min-height: 570px;
+      }
+
+      .quick-services {
+        width: calc(100% - 30px);
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .specialty-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .quick-services {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .quick-card {
+        padding: 22px 10px;
+      }
+
+      .specialty-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <a class="logo" href="#">
+      <div class="logo-symbol">PH</div>
+
+      <div class="logo-text">
+        <strong>Puerta de Hierro</strong>
+        <span>Hospitales</span>
+      </div>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#hospital">Hospital</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#medicos">Médicos</a></li>
+        <li><a href="#pacientes">Pacientes</a></li>
+        <li>
+          <a href="#contacto" class="appointment-btn">
+            Agenda tu cita
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-text">
+
+        <span class="hero-label">
+          Excelencia médica
+        </span>
+
+        <h1>
+          Tu salud merece
+          <strong>atención extraordinaria.</strong>
+        </h1>
+
+        <p>
+          Tecnología, especialistas y atención médica de alta
+          calidad para acompañarte en cada etapa de tu salud.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#contacto" class="btn btn-primary">
+            Agenda una cita
+          </a>
+
+          <a href="#especialidades" class="btn btn-secondary">
+            Ver especialidades
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUICK ACCESS -->
+
+  <div class="quick-wrapper">
+
+    <div class="quick-services">
+
+      <div class="quick-card">
+        <div class="quick-icon">👨‍⚕️</div>
+        <strong>Encuentra un médico</strong>
+        <span>Consulta nuestro directorio</span>
+      </div>
+
+      <div class="quick-card">
+        <div class="quick-icon">📅</div>
+        <strong>Agenda tu cita</strong>
+        <span>Atención especializada</span>
+      </div>
+
+      <div class="quick-card">
+        <div class="quick-icon">🏥</div>
+        <strong>Hospitales</strong>
+        <span>Conoce nuestras ubicaciones</span>
+      </div>
+
+      <div class="quick-card">
+        <div class="quick-icon">🚑</div>
+        <strong>Urgencias</strong>
+        <span>Atención las 24 horas</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SPECIALTIES -->
+
+  <section id="especialidades" class="specialties">
+
+    <div class="container">
+
+      <div class="section-label">
+        Especialidades
+      </div>
+
+      <h2 class="section-title">
+        Atención médica especializada
+      </h2>
+
+      <p class="section-description">
+        Un equipo multidisciplinario de especialistas respaldado
+        por tecnología médica para ofrecer atención integral.
+      </p>
+
+
+      <div class="specialty-grid">
+
+        <article class="specialty-card">
+          <div class="specialty-icon">♥</div>
+          <h3>Cardiología</h3>
+          <p>
+            Prevención, diagnóstico y tratamiento integral
+            de enfermedades cardiovasculares.
+          </p>
+        </article>
+
+        <article class="specialty-card">
+          <div class="specialty-icon">✚</div>
+          <h3>Medicina interna</h3>
+          <p>
+            Atención integral para el diagnóstico y manejo
+            de enfermedades en adultos.
+          </p>
+        </article>
+
+        <article class="specialty-card">
+          <div class="specialty-icon">◉</div>
+          <h3>Neurología</h3>
+          <p>
+            Evaluación especializada de enfermedades del
+            sistema nervioso.
+          </p>
+        </article>
+
+        <article class="specialty-card">
+          <div class="specialty-icon">⚕</div>
+          <h3>Oncología</h3>
+          <p>
+            Atención multidisciplinaria para pacientes
+            con enfermedades oncológicas.
+          </p>
+        </article>
+
+        <article class="specialty-card">
+          <div class="specialty-icon">✦</div>
+          <h3>Traumatología</h3>
+          <p>
+            Diagnóstico y tratamiento de lesiones y
+            enfermedades musculoesqueléticas.
+          </p>
+        </article>
+
+        <article class="specialty-card">
+          <div class="specialty-icon">＋</div>
+          <h3>Cirugía</h3>
+          <p>
+            Procedimientos quirúrgicos respaldados por
+            tecnología médica avanzada.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="hospital">
+
+    <div class="container about-grid">
+
+      <div class="about-image"></div>
+
+      <div class="about-content">
+
+        <div class="section-label">
+          Hospitales Puerta de Hierro
+        </div>
+
+        <h2 class="section-title">
+          Cuidamos lo más importante: tu salud.
+        </h2>
+
+        <p>
+          Nuestra atención combina especialistas, tecnología
+          médica e instalaciones diseñadas para brindar una
+          experiencia segura, humana y de alta calidad.
+        </p>
+
+        <div class="stats">
+
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Urgencias</span>
+          </div>
+
+          <div class="stat">
+            <strong>+30</strong>
+            <span>Especialidades</span>
+          </div>
+
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Compromiso</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section id="contacto" class="cta">
+
+    <h2>Estamos aquí para cuidarte.</h2>
+
+    <p>
+      Encuentra al especialista que necesitas y agenda tu cita.
+    </p>
+
+    <a href="#" class="btn btn-primary">
+      Agenda tu cita
+    </a>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <h3>Hospitales Puerta de Hierro</h3>
+      <p>
+        Atención médica especializada con tecnología,
+        calidad y compromiso humano.
+      </p>
+    </div>
+
+    <div>
+      <h4>Hospital</h4>
+      <a href="#">Nosotros</a>
+      <a href="#">Instalaciones</a>
+      <a href="#">Ubicaciones</a>
+    </div>
+
+    <div>
+      <h4>Pacientes</h4>
+      <a href="#">Especialidades</a>
+      <a href="#">Directorio médico</a>
+      <a href="#">Información para pacientes</a>
+    </div>
+
+    <div>
+      <h4>Contacto</h4>
+      <a href="#">Agenda tu cita</a>
+      <a href="#">Urgencias</a>
+      <a href="#">Contacto</a>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Hospitales Puerta de Hierro · Demo conceptual
+  </div>
+
+</footer>
+
+<script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/09/20/03/20260920031449-D7KQRSMU.js" defer></script>
+
+</body>
+</html>
